@@ -5,8 +5,8 @@
  - [Removing the hook](#removing-the-hook)
  - [Recommended structure](#recommended-structure)
  - [Responding to events](#responding-to-events)
-    - [Adding an event handler](#adding-an-event-handler)
-    - [Event Args](#event-args)
+    - [Adding an event handler](#responding-to-events--adding-an-event-handler)
+    - [Event Args](#responding-to-events--event-args)
 
 <br/>
 
