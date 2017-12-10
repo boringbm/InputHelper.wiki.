@@ -1,9 +1,3 @@
-# Functions #
-
-  SendKey()
-
-  SendKeyPress()
-
 # Hooks #
 
   Keyboard
