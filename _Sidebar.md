@@ -2,6 +2,6 @@
 
 ## Hooks ##
 
-  Keyboard
+  [[Low-level keyboard hook|]]
 
-  Mouse
+  Low-level mouse hook
