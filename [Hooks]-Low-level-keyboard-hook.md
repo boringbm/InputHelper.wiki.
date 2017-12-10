@@ -1,6 +1,6 @@
 **Content:**  
- - [Creating a low-level keyboard hook]()
- - [Removing the hook]()
+ - [Creating a low-level keyboard hook](#creating-a-low-level-keyboard-hook)
+ - [Removing the hook](#removing-the-hook)
 
 ## Creating a low-level keyboard hook ##
 
