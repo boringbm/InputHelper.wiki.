@@ -1,6 +1,11 @@
-**Content:**  
+>**NOTE: This page is a work in progress!**
+
+**Page contents:**  
  - [Creating a low-level keyboard hook](#creating-a-low-level-keyboard-hook)
  - [Removing the hook](#removing-the-hook)
+ - [Responding to events](#responding-to-events)
+    - [Adding an event handler](#adding-an-event-handler)
+    - [Event Args](#event-args)
 
 <br/>
 
@@ -35,3 +40,24 @@ Private Sub StopButton_Click(sender As System.Object, e As System.EventArgs) Han
     KeyboardHook.Dispose()
 End Sub
 ```
+
+<br/>
+
+## Responding to events ##
+
+The keyboard hook includes two events:
+
+ - `KeyDown`
+ - `KeyUp`
+
+These are responsible for notifying the programmer when a keystroke occurs.
+
+Like the name suggests the `KeyDown` event is raised whenever a key is pressed or held down on the keyboard. Likewise the `KeyUp` event is raised whenever a key is released.
+
+### Adding an event handler ###
+
+Adding an event handler is done either with the [**`AddHandler` statement**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/addhandler-statement) or a combination of the [**`WithEvents` keyword**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/modifiers/withevents) and [**`Handles`** clause](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/handles-clause).
+
+### Event Args ###
+
+_Event Arguments_ (or _Event Args_ for short) are a set of properties passed along with an event that contains information and data about the event.
