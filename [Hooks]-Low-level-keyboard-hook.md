@@ -3,6 +3,7 @@
 **Page contents:**  
  - [Creating a low-level keyboard hook](#creating-a-low-level-keyboard-hook)
  - [Removing the hook](#removing-the-hook)
+ - [Recommended structure](#recommended-structure)
  - [Responding to events](#responding-to-events)
     - [Adding an event handler](#adding-an-event-handler)
     - [Event Args](#event-args)
@@ -24,10 +25,24 @@ Dim KeyboardHook As New InputHelper.Hooks.KeyboardHook()
 To remove the hook you just have to call its `Dispose()` method. The hook will also be removed automatically if it goes out of scope.
 
 ```vb.net
+'Removing the hook manually.
 KeyboardHook.Dispose()
+
+
+'Example of a hook getting removed automatically.
+Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles StopButton.Click
+    Dim KeyboardHook As New InputHelper.Hooks.KeyboardHook()
+
+    'Stuff happens here...
+
+End Sub 'Once code execution reaches this point the hook variable goes out of scope and will be removed automatically.
 ```
 
-**NOTE:** It is recommended that you keep the hook variable at class-level, and dispose it when you no longer need it.
+<br/>
+
+## Recommended structure ##
+
+It is recommended that you keep the hook variable at class-level, and dispose it when you no longer need it. This is because it gives you better control over the hook and decreases the risk of it accidentally going out of scope.
 
 ```vb.net
 Dim KeyboardHook As InputHelper.Hooks.KeyboardHook
