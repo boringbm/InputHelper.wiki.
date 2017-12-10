@@ -1,4 +1,4 @@
-# --- CONTENT --- #
+# --- NAVIGATION --- #
 
 ## Hooks ##
 
