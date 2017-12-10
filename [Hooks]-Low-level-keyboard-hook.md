@@ -1,4 +1,4 @@
->**NOTE: This page is a work in progress!**
+>### NOTE: This page is a work in progress! ###
 
 **Page contents:**  
  - [Creating a low-level keyboard hook](#creating-a-low-level-keyboard-hook)
