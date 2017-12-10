@@ -22,7 +22,7 @@ To remove the hook you just have to call its `Dispose()` method. The hook will a
 KeyboardHook.Dispose()
 ```
 
-**NOTE:** It is recommended that you keep the hook variable at class-level and dispose it when you no longer need it.
+**NOTE:** It is recommended that you keep the hook variable at class-level, and dispose it when you no longer need it.
 
 ```vb.net
 Dim KeyboardHook As InputHelper.Hooks.KeyboardHook
