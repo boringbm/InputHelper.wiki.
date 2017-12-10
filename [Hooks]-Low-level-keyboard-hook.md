@@ -2,6 +2,8 @@
  - [Creating a low-level keyboard hook](#creating-a-low-level-keyboard-hook)
  - [Removing the hook](#removing-the-hook)
 
+<br/>
+
 ## Creating a low-level keyboard hook ##
 
 To create a low-level keyboard hook you just need to instantiate an instance of the `InputHelper.Hooks.KeyboardHook` class. 
