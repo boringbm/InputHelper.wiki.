@@ -8,6 +8,7 @@ Contents:
  - [Responding to events](#responding-to-events)
     - [Adding an event handler](#adding-an-event-handler)
     - [Event Args](#event-args)
+ - [Modifier keys](#modifier-keys)
 
 # **Creating a low-level keyboard hook** #
 
@@ -17,7 +18,7 @@ To create a low-level keyboard hook you just need to instantiate an instance of 
 Dim KeyboardHook As New InputHelper.Hooks.KeyboardHook()
 ```
 
-----
+<br/>
 
 # **Removing the hook** #
 
@@ -37,7 +38,7 @@ Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handle
 End Sub 'Once code execution reaches this point the hook variable goes out of scope and will be removed automatically.
 ```
 
-----
+<br/>
 
 # **Recommended structure** #
 
@@ -66,7 +67,7 @@ Public Class Form1
 End Class
 ```
 
-----
+<br/>
 
 # **Responding to events** #
 
@@ -134,10 +135,7 @@ InputHelper's event arguments can be accessed through the **`e`** parameter of t
 
 ```vb.net
 Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
-    'Checks for the key combination CTRL + A.
-    If e.Modifiers = InputHelper.ModifierKeys.Control AndAlso e.KeyCode = Keys.A Then
-        MessageBox.Show("CTRL + A was pressed.")
-    End If
+    MessageBox.Show("Key: " & e.KeyCode.ToString() & ", Modifiers: " & e.Modifiers.ToString())
 End Sub
 ```
 
@@ -151,3 +149,29 @@ Available properties are:
 | KeyState  | Read        | The current state of the key that generated the keystroke (down or up).
 | Modifiers | Read        | The modifier keys that was pressed in combination with the keystroke.<br/>\- **Valid modifiers:** `Control`, `Shift`, `Alt`, `Windows`
 | ScanCode  | Read        | The hardware scan code of the key that generated the keystroke.<br/>\- **Read more:** [**Scancode - Wikipedia**](https://en.wikipedia.org/wiki/Scancode).
+
+<br/>
+
+# **Modifier keys** #
+
+Checking if a modifier has been pressed during a `KeyDown` or `KeyUp` event can be done via the `e.Modifiers` property.
+
+```vb.net
+Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
+    'Checks for the key combination CTRL + A.
+    If e.Modifiers = InputHelper.ModifierKeys.Control AndAlso e.KeyCode = Keys.A Then
+        MessageBox.Show("CTRL + A was pressed.")
+    End If
+End Sub
+```
+
+Checking for multiple modifiers at the same time can be done by comparing the `e.Modifiers` property with a [**bitwise-or**](https://en.wikipedia.org/wiki/Bitwise_operation) combination of any of the `InputHelper.ModifierKeys` values.
+
+```vb.net
+Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
+    'Checks for the key combination CTRL + SHIFT + S.
+    If e.Modifiers = (InputHelper.ModifierKeys.Control Or InputHelper.ModifierKeys.Shift) AndAlso e.KeyCode = Keys.S Then
+        MessageBox.Show("CTRL + SHIFT + S was pressed.")
+    End If
+End Sub
+```
