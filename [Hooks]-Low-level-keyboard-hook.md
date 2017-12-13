@@ -130,3 +130,25 @@ End Sub
 ### Responding to events > Event Args ###
 
 _Event Arguments_ (or _Event Args_ for short) are a set of properties passed along with an event that contains information and data about the event.
+
+InputHelper's event arguments are available through the **`e`** parameter of the event.
+
+```vb.net
+Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
+    'Checks for the key combination CTRL + A.
+    If e.Modifiers = InputHelper.ModifierKeys.Control AndAlso e.KeyCode = Keys.A Then
+        MessageBox.Show("CTRL + A was pressed.")
+    End If
+End Sub
+```
+
+Available properties are:
+
+| Property  | Access      | Description |
+| --------- | ----------- | ----------- |
+| Block     | Read, Write | Whether the keystroke should be blocked from reaching any windows.<br/>**CAUTION:** Blocked keystrokes will not be handled by any application, nor Windows itself (apart from `CTRL + ALT + DEL`). Whatever problems caused by using this property is _**your own responsibility**_.
+| Extended  | Read        | Whether the keystroke message originated from one of the additional keys on the enhanced keyboard.<br/>\- **Read more**: [**Keystroke Message Flags - About Keyboard Input - MSDN**](https://msdn.microsoft.com/en-us/library/windows/desktop/ms646267(v=vs.85).aspx#_win32_Keystroke_Message_Flags)).
+| KeyCode   | Read        | The keyboard code of the key that generated the keystroke.
+| KeyState  | Read        | The current state of the key that generated the keystroke (down or up).
+| Modifiers | Read        | The modifier keys that was pressed in combination with the keystroke.<br/>\- **Valid modifiers:** `Control`, `Shift`, `Alt`, `Windows`
+| ScanCode  | Read        | The hardware scan code of the key that generated the keystroke.<br/>\- **Read more:** [**Scancode - Wikipedia**](https://en.wikipedia.org/wiki/Scancode).
