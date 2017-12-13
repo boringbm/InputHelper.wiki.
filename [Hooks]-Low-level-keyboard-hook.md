@@ -1,26 +1,25 @@
 >### NOTE: This page is a work in progress! ###
 
-**Page contents:**  
+Contents:
+
  - [Creating a low-level keyboard hook](#creating-a-low-level-keyboard-hook)
  - [Removing the hook](#removing-the-hook)
  - [Recommended structure](#recommended-structure)
  - [Responding to events](#responding-to-events)
-    - [Adding an event handler](#responding-to-events--adding-an-event-handler)
-    - [Event Args](#responding-to-events--event-args)
+    - [Adding an event handler](#adding-an-event-handler)
+    - [Event Args](#event-args)
 
-<br/>
+# **Creating a low-level keyboard hook** #
 
-## Creating a low-level keyboard hook ##
-
-To create a low-level keyboard hook you just need to instantiate an instance of the `InputHelper.Hooks.KeyboardHook` class. 
+To create a low-level keyboard hook you just need to instantiate an instance of the `InputHelper.Hooks.KeyboardHook` class.
 
 ```vb.net
 Dim KeyboardHook As New InputHelper.Hooks.KeyboardHook()
 ```
 
-<br/>
+----
 
-## Removing the hook ##
+# **Removing the hook** #
 
 To remove the hook you just have to call its `Dispose()` method. The hook will also be removed automatically if it goes out of scope.
 
@@ -38,9 +37,9 @@ Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handle
 End Sub 'Once code execution reaches this point the hook variable goes out of scope and will be removed automatically.
 ```
 
-<br/>
+----
 
-## Recommended structure ##
+# **Recommended structure** #
 
 It is recommended that you keep the hook variable at class-level, and dispose it when you no longer need it. This is because it gives you better control over the hook and decreases the risk of it accidentally going out of scope.
 
@@ -67,9 +66,9 @@ Public Class Form1
 End Class
 ```
 
-<br/>
+----
 
-## Responding to events ##
+# **Responding to events** #
 
 The keyboard hook includes two events:
 
@@ -82,11 +81,11 @@ Like the name suggests the `KeyDown` event is raised whenever a key is pressed o
 
 <br/>
 
-### Responding to events > Adding an event handler ###
+### Adding an event handler ###
 
 Adding an event handler is done either with the [**`AddHandler` statement**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/addhandler-statement) or using a combination of the [**`WithEvents` keyword**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/modifiers/withevents) and [**`Handles` clause**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/handles-clause).
 
-**Using `AddHandler`:**
+Using `AddHandler`:
 
 ```vb.net
 Dim KeyboardHook As InputHelper.Hooks.KeyboardHook
@@ -108,7 +107,7 @@ Private Sub KeyboardHook_KeyUp(sender As System.Object, e As InputHelperLib.Inpu
 End Sub
 ```
 
-**Using `WithEvents` and the `Handles` clause:**
+Using `WithEvents` and the `Handles` clause:
 
 ```vb.net
 'When using WithEvents and the Handles clause the hook must be initialized immediately at class-level.
@@ -127,11 +126,11 @@ End Sub
 
 <br/>
 
-### Responding to events > Event Args ###
+### Event Args ###
 
 _Event Arguments_ (or _Event Args_ for short) are a set of properties passed along with an event that contains information and data about the event.
 
-InputHelper's event arguments are available through the **`e`** parameter of the event.
+InputHelper's event arguments can be accessed through the **`e`** parameter of the event.
 
 ```vb.net
 Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
