@@ -1,5 +1,3 @@
->### NOTE: This page is a work in progress! ###
-
 Contents:
 
  - [Creating a low-level keyboard hook](#creating-a-low-level-keyboard-hook)
