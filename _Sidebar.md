@@ -2,6 +2,6 @@
 
 ## Hooks ##
 
-  [[Low-level keyboard hook (WIP)|[Hooks] Low level keyboard hook]]
+  [[Low-level keyboard hook (WIP)|Low level keyboard hook]]
 
-  [[Low-level mouse hook (WIP)|[Hooks] Low level mouse hook]]
+  [[Low-level mouse hook (WIP)|Low level mouse hook]]
