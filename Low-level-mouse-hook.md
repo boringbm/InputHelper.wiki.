@@ -170,7 +170,7 @@ Available properties are:
 | Property        | Access      | Description |
 | --------------- | ----------- | ----------- |
 | Block           | Read, Write | Whether the mouse input should be blocked from reaching any windows.<br/>**CAUTION:** Blocked mouse input will not be handled by any application, nor Windows itself! Any problems caused by using this property is _**your own responsibility!**_ _(Any event)_
-| Button          | Read        | The mouse button that was pressed or released _(MouseDown or MouseUp events only)_.
+| Button          | Read        | The mouse button that was pressed or released _(MouseDown and MouseUp events only)_.
 | ButtonState     | Read        | The state of the button that generated the event (Down or Up) _(MouseDown and MouseUp events only)_.
 | Delta           | Read        | The amount that the mouse wheel has scrolled. This is positive if the mouse wheel is rotated upwards (away from the user) or negative if the mouse wheel is rotated in a downwards (toward the user) _(MouseWheel event only)_.
 | DoubleClick     | Read        | Whether the clicked/released button was caused by a double-click _(MouseDown event only)_.
