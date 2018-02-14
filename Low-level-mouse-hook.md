@@ -169,36 +169,10 @@ Available properties are:
 
 | Property        | Access      | Description |
 | --------------- | ----------- | ----------- |
-| Block           | Read, Write | Whether the mouse input should be blocked from reaching any windows.<br/>**CAUTION:** Blocked mouse input will not be handled by any application, nor Windows itself! Any problems caused by using this property is _**your own responsibility**_!
-| Button          | Read        | The mouse button that was pressed or released (for MouseDown and MouseUp only).
-| ButtonState     | Read        | The state of the button that generated the event (Down or Up - for MouseDown and MouseUp only)
-| Delta           | Read        | The amount that the mouse wheel has scrolled. This is positive if the mouse wheel is rotated upwards (away from the user) or negative if the mouse wheel is rotated in a downwards (toward the user).
-| DoubleClick     | Read        | Whether the clicked/released button was caused by a double-click.
-| Location        | Read        | The current location of the mouse (in screen coordinates).
-| ScrollDirection | Read        | In which direction the mouse wheel was scrolled (vertically or horizontally).
-
-<br/>
-
-# **Modifier keys** #
-
-Checking if a modifier has been pressed during a `KeyDown` or `KeyUp` event can be done via the `e.Modifiers` property.
-
-```vb.net
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
-    'Checks for the key combination CTRL + A.
-    If e.Modifiers = InputHelper.ModifierKeys.Control AndAlso e.KeyCode = Keys.A Then
-        MessageBox.Show("CTRL + A was pressed.")
-    End If
-End Sub
-```
-
-Checking for multiple modifiers at the same time can be done by comparing the `e.Modifiers` property with a [**bitwise-or**](https://en.wikipedia.org/wiki/Bitwise_operation) combination of any of the `InputHelper.ModifierKeys` values.
-
-```vb.net
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
-    'Checks for the key combination CTRL + SHIFT + S.
-    If e.Modifiers = (InputHelper.ModifierKeys.Control Or InputHelper.ModifierKeys.Shift) AndAlso e.KeyCode = Keys.S Then
-        MessageBox.Show("CTRL + SHIFT + S was pressed.")
-    End If
-End Sub
-```
+| Block           | Read, Write | Whether the mouse input should be blocked from reaching any windows.<br/>**CAUTION:** Blocked mouse input will not be handled by any application, nor Windows itself! Any problems caused by using this property is _**your own responsibility**_! _**(Any event)**_
+| Button          | Read        | The mouse button that was pressed or released _**(MouseDown or MouseUp events only)**_.
+| ButtonState     | Read        | The state of the button that generated the event (Down or Up) _**(MouseDown and MouseUp events only)**_.
+| Delta           | Read        | The amount that the mouse wheel has scrolled. This is positive if the mouse wheel is rotated upwards (away from the user) or negative if the mouse wheel is rotated in a downwards (toward the user) _**(MouseWheel event only)**_.
+| DoubleClick     | Read        | Whether the clicked/released button was caused by a double-click _**(MouseDown event only)**_.
+| Location        | Read        | The current location of the mouse (in screen coordinates) _**(Any event)**_.
+| ScrollDirection | Read        | In which direction the mouse wheel was scrolled (vertically or horizontally) _**(MouseWheel event only)**_.
