@@ -4,7 +4,7 @@ Contents:
  - [Removing the hook](#removing-the-hook)
  - [Recommended structure](#recommended-structure)
  - [Responding to events](#responding-to-events)
-    - [Adding an event handler](#adding-an-event-handler)
+    - [Adding event handlers](#adding-event-handlers)
     - [Event Args](#event-args)
 
 # **Creating a low-level mouse hook** #
@@ -82,29 +82,39 @@ The mouse hook includes four events. They are responsible for notifying the prog
 
 <br/>
 
-### Adding an event handler ###
+### Adding event handlers ###
 
 Adding an event handler to one of the `MouseHook`'s events is done either with the [**`AddHandler` statement**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/addhandler-statement) or using a combination of the [**`WithEvents` keyword**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/modifiers/withevents) and [**`Handles` clause**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/handles-clause).
 
 Using `AddHandler`:
 
 ```vb.net
-Dim KeyboardHook As InputHelper.Hooks.KeyboardHook
+Dim MouseHook As InputHelper.Hooks.MouseHook
 
 Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-    KeyboardHook = New InputHelper.Hooks.KeyboardHook()
+    MouseHook = New InputHelper.Hooks.MouseHook()
 
-    'Adding event handlers to the KeyDown and KeyUp events.
-    AddHandler KeyboardHook.KeyDown, AddressOf KeyboardHook_KeyDown
-    AddHandler KeyboardHook.KeyUp, AddressOf KeyboardHook_KeyUp
+    'Adding event handlers to the MouseHook events.
+    AddHandler MouseHook.MouseDown, AddressOf MouseHook_MouseDown
+    AddHandler MouseHook.MouseMove, AddressOf MouseHook_MouseMove
+    AddHandler MouseHook.MouseUp, AddressOf MouseHook_MouseUp
+    AddHandler MouseHook.MouseWheel, AddressOf MouseHook_MouseWheel
 End Sub
 
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs)
-    'KeyDown event.
+Private Sub MouseHook_MouseDown(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+    'MouseDown event.
 End Sub
 
-Private Sub KeyboardHook_KeyUp(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs)
-    'KeyUp event.
+Private Sub MouseHook_MouseMove(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+    'MouseMove event.
+End Sub
+
+Private Sub MouseHook_MouseUp(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+    'MouseUp event.
+End Sub
+
+Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+    'MouseWheel event.
 End Sub
 ```
 
@@ -112,14 +122,22 @@ Using `WithEvents` and the `Handles` clause:
 
 ```vb.net
 'When using WithEvents and the Handles clause the hook must be initialized immediately at class-level.
-Dim WithEvents KeyboardHook As New InputHelper.Hooks.KeyboardHook()
+Dim WithEvents MouseHook As New InputHelper.Hooks.MouseHook()
 
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
-    'KeyDown event.
+Private Sub MouseHook_MouseDown(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs) Handles MouseHook.MouseDown
+    'MouseDown event.
 End Sub
 
-Private Sub KeyboardHook_KeyUp(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyUp
-    'KeyUp event.
+Private Sub MouseHook_MouseMove(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs) Handles MouseHook.MouseMove
+    'MouseMove event.
+End Sub
+
+Private Sub MouseHook_MouseUp(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs) Handles MouseHook.MouseUp
+    'MouseUp event.
+End Sub
+
+Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs) Handles MouseHook.MouseWheel
+    'MouseWheel event.
 End Sub
 ```
 
@@ -129,26 +147,35 @@ End Sub
 
 ### Event Args ###
 
-_Event Arguments_ (or _Event Args_ for short) are a set of properties passed along with an event that contains information and data about the event.
+_Event Arguments_ (or _Event Args_ for short) are a set of properties passed along with an event that contains information and data from, or about, the event.
 
 InputHelper's event arguments can be accessed through the **`e`** parameter of the event.
 
 ```vb.net
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
-    MessageBox.Show("Key: " & e.KeyCode.ToString() & ", Modifiers: " & e.Modifiers.ToString())
+Private Sub MouseHook_MouseDown(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+    MessageBox.Show("Mouse button clicked: " & e.Button.ToString() & ", Double-click: " & e.DoubleClick.ToString())
+End Sub
+
+Private Sub MouseHook_MouseMove(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+    TextBox1.AppendText("Mouse moved to (X: " & e.Location.X & ", Y: " & e.Location.Y & ")")
+End Sub
+
+Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+    MessageBox.Show("Mouse scroll: " & e.ScrollDirection.ToString() & ", Amount: " & e.Delta)
 End Sub
 ```
 
 Available properties are:
 
-| Property  | Access      | Description |
-| --------- | ----------- | ----------- |
-| Block     | Read, Write | Whether the keystroke should be blocked from reaching any windows.<br/>**CAUTION:** Blocked keystrokes will not be handled by any application, nor Windows itself (apart from `CTRL + ALT + DEL`). Whatever problems caused by using this property is _**your own responsibility**_.
-| Extended  | Read        | Whether the keystroke message originated from one of the additional keys on the enhanced keyboard.<br/>\- **Read more**: [**Keystroke Message Flags - About Keyboard Input - MSDN**](https://msdn.microsoft.com/en-us/library/windows/desktop/ms646267(v=vs.85).aspx#_win32_Keystroke_Message_Flags)).
-| KeyCode   | Read        | The keyboard code of the key that generated the keystroke.
-| KeyState  | Read        | The current state of the key that generated the keystroke (down or up).
-| Modifiers | Read        | The modifier keys that was pressed in combination with the keystroke.<br/>\- **Valid modifiers:** `Control`, `Shift`, `Alt`, `Windows`
-| ScanCode  | Read        | The hardware scan code of the key that generated the keystroke.<br/>\- **Read more:** [**Scancode - Wikipedia**](https://en.wikipedia.org/wiki/Scancode).
+| Property        | Access      | Description |
+| --------------- | ----------- | ----------- |
+| Block           | Read, Write | Whether the mouse input should be blocked from reaching any windows.<br/>**CAUTION:** Blocked mouse input will not be handled by any application, nor Windows itself! Any problems caused by using this property is _**your own responsibility**_!
+| Button          | Read        | The mouse button that was pressed or released (for MouseDown and MouseUp only).
+| ButtonState     | Read        | The state of the button that generated the event (Down or Up - for MouseDown and MouseUp only)
+| Delta           | Read        | The amount that the mouse wheel has scrolled. This is positive if the mouse wheel is rotated upwards (away from the user) or negative if the mouse wheel is rotated in a downwards (toward the user).
+| DoubleClick     | Read        | Whether the clicked/released button was caused by a double-click.
+| Location        | Read        | The current location of the mouse (in screen coordinates).
+| ScrollDirection | Read        | In which direction the mouse wheel was scrolled (vertically or horizontally).
 
 <br/>
 
