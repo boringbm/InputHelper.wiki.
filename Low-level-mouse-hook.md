@@ -173,6 +173,6 @@ Available properties are:
 | Button          | Read        | The mouse button that was pressed or released _(MouseDown and MouseUp events only)_.
 | ButtonState     | Read        | The state of the button that generated the event (Down or Up) _(MouseDown and MouseUp events only)_.
 | Delta           | Read        | The amount that the mouse wheel has scrolled. This is positive if the mouse wheel is rotated upwards (away from the user) or negative if the mouse wheel is rotated in a downwards (toward the user) _(MouseWheel event only)_.
-| DoubleClick     | Read        | Whether the clicked/released button was caused by a double-click _(MouseDown event only)_.
+| DoubleClick     | Read        | Whether the clicked button was caused by a double-click _(MouseDown event only)_.
 | Location        | Read        | The current location of the mouse (in screen coordinates) _(Any event)_.
 | ScrollDirection | Read        | In which direction the mouse wheel was scrolled (vertically or horizontally) _(MouseWheel event only)_.
