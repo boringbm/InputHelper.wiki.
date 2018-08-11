@@ -10,23 +10,28 @@ Contents:
 
 # **Creating a low-level keyboard hook** #
 
-To create a low-level keyboard hook you just need to instantiate an instance of the `InputHelper.Hooks.KeyboardHook` class.
+To create a low-level keyboard hook with InputHelper you simply have to instantiate an instance of the `InputHelper.Hooks.KeyboardHook` class.
 
 ```vb.net
 Dim KeyboardHook As New InputHelper.Hooks.KeyboardHook()
 ```
 
+The hook is now created and will be listening for keyboard events.
+
 <br/>
 
 # **Removing the hook** #
 
-To remove the hook you just have to call its `Dispose()` method. The hook will also be removed automatically if it goes out of scope.
+The hook can be removed manually by calling its `Dispose()` method.
 
 ```vb.net
 'Removing the hook manually.
 KeyboardHook.Dispose()
+```
 
+However, the hook will also be removed automatically if the variable goes out of scope:
 
+```vb.net
 'Example of a hook getting removed automatically.
 Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles StopButton.Click
     Dim KeyboardHook As New InputHelper.Hooks.KeyboardHook()
