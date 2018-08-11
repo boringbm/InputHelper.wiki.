@@ -87,9 +87,9 @@ Like the name suggests the `KeyDown` event is raised whenever a key is pressed o
 
 ### Adding an event handler ###
 
-Adding an event handler is done either with the [**`AddHandler` statement**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/addhandler-statement) or using a combination of the [**`WithEvents` keyword**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/modifiers/withevents) and [**`Handles` clause**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/handles-clause).
+Adding an event handler can be done in two different ways: Either with the [**`AddHandler` statement**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/addhandler-statement), or using a combination of the [**`WithEvents` keyword**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/modifiers/withevents) and [**`Handles` clause**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/handles-clause).
 
-Using `AddHandler`:
+**Method 1: Using `AddHandler`**
 
 ```vb.net
 Dim KeyboardHook As InputHelper.Hooks.KeyboardHook
@@ -111,7 +111,7 @@ Private Sub KeyboardHook_KeyUp(sender As System.Object, e As InputHelperLib.Inpu
 End Sub
 ```
 
-Using `WithEvents` and the `Handles` clause:
+**Method 2: Using `WithEvents` and the `Handles` clause**
 
 ```vb.net
 'When using WithEvents and the Handles clause the hook must be initialized immediately at class-level.
