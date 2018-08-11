@@ -128,7 +128,7 @@ End Sub
 
 >**NOTE:** It is recommended to use the `AddHandler` solution if the hook may be disposed/reinstantiated multiple times during the lifetime of the form.
 >
->You need to use `AddHandler` every time you reinstantiate the hook.
+>In **Method 1** you need to use `AddHandler` every time you reinstantiate the hook.
 
 <br/>
 
