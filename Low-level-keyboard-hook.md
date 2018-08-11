@@ -56,7 +56,12 @@ Public Class Form1
     'Class-level variable.
     Dim KeyboardHook As InputHelper.Hooks.KeyboardHook
 
-    'Your code...
+    'Instantiate the hook on form load (if you want to).
+    Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        KeyboardHook = New InputHelper.Hooks.KeyboardHook()
+    End Sub
+
+    'The rest of your code...
 
 End Class
 ```
