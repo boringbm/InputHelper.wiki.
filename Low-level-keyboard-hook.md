@@ -126,7 +126,9 @@ Private Sub KeyboardHook_KeyUp(sender As System.Object, e As InputHelperLib.Inpu
 End Sub
 ```
 
-**NOTE:** It is recommended to use the `AddHandler` solution if the hook may be disposed/reinstantiated multiple times during the lifetime of the form.
+>**NOTE:** It is recommended to use the `AddHandler` solution if the hook may be disposed/reinstantiated multiple times during the lifetime of the form.
+>
+>You need to use `AddHandler` every time you reinstantiate the hook.
 
 <br/>
 
