@@ -84,9 +84,9 @@ The mouse hook includes four events. They are responsible for notifying the prog
 
 ### Adding event handlers ###
 
-Adding an event handler to one of the `MouseHook`'s events is done either with the [**`AddHandler` statement**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/addhandler-statement) or using a combination of the [**`WithEvents` keyword**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/modifiers/withevents) and [**`Handles` clause**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/handles-clause).
+Adding an event handler to one of the `MouseHook`'s events can be done in two different ways: Either with the [**`AddHandler` statement**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/addhandler-statement) or using a combination of the [**`WithEvents` keyword**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/modifiers/withevents) and [**`Handles` clause**](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/handles-clause).
 
-Using `AddHandler`:
+**Method 1: Using `AddHandler`**
 
 ```vb.net
 Dim MouseHook As InputHelper.Hooks.MouseHook
@@ -118,7 +118,7 @@ Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelperLib.InputHelp
 End Sub
 ```
 
-Using `WithEvents` and the `Handles` clause:
+**Method 2: Using `WithEvents` and the `Handles` clause**
 
 ```vb.net
 'When using WithEvents and the Handles clause the hook must be initialized immediately at class-level.
@@ -141,7 +141,9 @@ Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelperLib.InputHelp
 End Sub
 ```
 
-**NOTE:** It is recommended to use the `AddHandler` solution if the hook may be disposed/reinstantiated multiple times during the lifetime of the form.
+>**NOTE:** It is recommended to use the `AddHandler` solution if the hook may be disposed/reinstantiated multiple times during the lifetime of the form.
+>
+>In **Method 1** you need to use `AddHandler` every time you reinstantiate the hook.
 
 <br/>
 
