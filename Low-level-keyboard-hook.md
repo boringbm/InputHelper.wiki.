@@ -48,8 +48,6 @@ End Sub 'Once code execution reaches this point the hook variable goes out of sc
 It is recommended that you keep the hook variable at class-level, and dispose it when you no longer need it. This is because it gives you better control over the hook and decreases the risk of it accidentally going out of scope.
 
 ```vb.net
-Imports InputHelperLib
-
 'Your form.
 Public Class Form1
 
@@ -69,8 +67,6 @@ End Class
 Below is an example of using the hook in a form with a **Start** and **Stop** button, where the hook is started automatically when the form opens:
 
 ```vb.net
-Imports InputHelperLib
-
 Public Class Form1
     Dim KeyboardHook As InputHelper.Hooks.KeyboardHook
 
@@ -121,11 +117,11 @@ Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles M
     AddHandler KeyboardHook.KeyUp, AddressOf KeyboardHook_KeyUp
 End Sub
 
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs)
+Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelper.EventArgs.KeyboardHookEventArgs)
     'KeyDown event.
 End Sub
 
-Private Sub KeyboardHook_KeyUp(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs)
+Private Sub KeyboardHook_KeyUp(sender As System.Object, e As InputHelper.EventArgs.KeyboardHookEventArgs)
     'KeyUp event.
 End Sub
 ```
@@ -136,11 +132,11 @@ End Sub
 'When using WithEvents and the Handles clause the hook must be initialized immediately at class-level.
 Dim WithEvents KeyboardHook As New InputHelper.Hooks.KeyboardHook()
 
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
+Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelper.EventArgs.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
     'KeyDown event.
 End Sub
 
-Private Sub KeyboardHook_KeyUp(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyUp
+Private Sub KeyboardHook_KeyUp(sender As System.Object, e As InputHelper.EventArgs.KeyboardHookEventArgs) Handles KeyboardHook.KeyUp
     'KeyUp event.
 End Sub
 ```
@@ -158,7 +154,7 @@ _Event Arguments_ (or _Event Args_ for short) are a set of properties passed alo
 InputHelper's event arguments can be accessed through the **`e`** parameter of the event.
 
 ```vb.net
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
+Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelper.EventArgs.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
     MessageBox.Show("Key: " & e.KeyCode.ToString() & ", Modifiers: " & e.Modifiers.ToString())
 End Sub
 ```
@@ -181,7 +177,7 @@ Available properties are:
 Checking if a modifier has been pressed during a `KeyDown` or `KeyUp` event can be done via the `e.Modifiers` property.
 
 ```vb.net
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
+Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelper.EventArgs.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
     'Checks for the key combination CTRL + A.
     If e.Modifiers = InputHelper.ModifierKeys.Control AndAlso e.KeyCode = Keys.A Then
         MessageBox.Show("CTRL + A was pressed.")
@@ -192,7 +188,7 @@ End Sub
 Checking for multiple modifiers at the same time can be done by comparing the `e.Modifiers` property with a [**bitwise-or**](https://en.wikipedia.org/wiki/Bitwise_operation) combination of any of the `InputHelper.ModifierKeys` values.
 
 ```vb.net
-Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelperLib.InputHelper.Hooks.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
+Private Sub KeyboardHook_KeyDown(sender As System.Object, e As InputHelper.EventArgs.KeyboardHookEventArgs) Handles KeyboardHook.KeyDown
     'Checks for the key combination CTRL + SHIFT + S.
     If e.Modifiers = (InputHelper.ModifierKeys.Control Or InputHelper.ModifierKeys.Shift) AndAlso e.KeyCode = Keys.S Then
         MessageBox.Show("CTRL + SHIFT + S was pressed.")
