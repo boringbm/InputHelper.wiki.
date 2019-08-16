@@ -47,8 +47,6 @@ End Sub 'Once code execution reaches this point the hook variable goes out of sc
 It is recommended that you keep the hook variable at class-level, and dispose it when you no longer need it. This is because it gives you better control over the hook and decreases the risk of it accidentally going out of scope.
 
 ```vb.net
-Imports InputHelperLib
-
 'Your form.
 Public Class Form1
 
@@ -68,8 +66,6 @@ End Class
 Below is an example of using the hook in a form with a **Start** and **Stop** button, where the hook is started automatically when the form opens:
 
 ```vb.net
-Imports InputHelperLib
-
 Public Class Form1
     Dim MouseHook As InputHelper.Hooks.MouseHook
 
@@ -120,19 +116,19 @@ Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles M
     AddHandler MouseHook.MouseWheel, AddressOf MouseHook_MouseWheel
 End Sub
 
-Private Sub MouseHook_MouseDown(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+Private Sub MouseHook_MouseDown(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs)
     'MouseDown event.
 End Sub
 
-Private Sub MouseHook_MouseMove(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+Private Sub MouseHook_MouseMove(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs)
     'MouseMove event.
 End Sub
 
-Private Sub MouseHook_MouseUp(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+Private Sub MouseHook_MouseUp(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs)
     'MouseUp event.
 End Sub
 
-Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs)
     'MouseWheel event.
 End Sub
 ```
@@ -143,19 +139,19 @@ End Sub
 'When using WithEvents and the Handles clause the hook must be initialized immediately at class-level.
 Dim WithEvents MouseHook As New InputHelper.Hooks.MouseHook()
 
-Private Sub MouseHook_MouseDown(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs) Handles MouseHook.MouseDown
+Private Sub MouseHook_MouseDown(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs) Handles MouseHook.MouseDown
     'MouseDown event.
 End Sub
 
-Private Sub MouseHook_MouseMove(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs) Handles MouseHook.MouseMove
+Private Sub MouseHook_MouseMove(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs) Handles MouseHook.MouseMove
     'MouseMove event.
 End Sub
 
-Private Sub MouseHook_MouseUp(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs) Handles MouseHook.MouseUp
+Private Sub MouseHook_MouseUp(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs) Handles MouseHook.MouseUp
     'MouseUp event.
 End Sub
 
-Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs) Handles MouseHook.MouseWheel
+Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs) Handles MouseHook.MouseWheel
     'MouseWheel event.
 End Sub
 ```
@@ -173,15 +169,15 @@ _Event Arguments_ (or _Event Args_ for short) are a set of properties passed alo
 InputHelper's event arguments can be accessed through the **`e`** parameter of the event.
 
 ```vb.net
-Private Sub MouseHook_MouseDown(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+Private Sub MouseHook_MouseDown(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs)
     MessageBox.Show("Mouse button clicked: " & e.Button.ToString() & ", Double-click: " & e.DoubleClick.ToString())
 End Sub
 
-Private Sub MouseHook_MouseMove(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+Private Sub MouseHook_MouseMove(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs)
     TextBox1.AppendText("Mouse moved to (X: " & e.Location.X & ", Y: " & e.Location.Y & ")")
 End Sub
 
-Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelperLib.InputHelper.Hooks.MouseHookEventArgs)
+Private Sub MouseHook_MouseWheel(sender As Object, e As InputHelper.EventArgs.MouseHookEventArgs)
     MessageBox.Show("Mouse scroll: " & e.ScrollDirection.ToString() & ", Amount: " & e.Delta)
 End Sub
 ```
