@@ -58,6 +58,11 @@ Public Class Form1
         MouseHook = New InputHelper.Hooks.MouseHook()
     End Sub
 
+    'Dispose of the hook when the form has closed.
+    Private Sub Form1_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+        MouseHook.Dispose()
+    End Sub
+
     'The rest of your code...
 
 End Class
@@ -69,8 +74,8 @@ Below is an example of using the hook in a form with a **Start** and **Stop** bu
 Public Class Form1
     Dim MouseHook As InputHelper.Hooks.MouseHook
 
-    Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        MouseHook = New InputHelper.Hooks.MouseHook() 'Start the hook when the form opens.
+    Private Sub Form1_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+        If MouseHook IsNot Nothing Then MouseHook.Dispose() 'Dispose the hook if it is still active when the form has closed.
     End Sub
 
     Private Sub StartButton_Click(sender As System.Object, e As System.EventArgs) Handles StartButton.Click
