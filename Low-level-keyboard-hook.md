@@ -59,6 +59,11 @@ Public Class Form1
         KeyboardHook = New InputHelper.Hooks.KeyboardHook()
     End Sub
 
+    'Dispose of the hook when the form has closed.
+    Private Sub Form1_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+        KeyboardHook.Dispose()
+    End Sub
+
     'The rest of your code...
 
 End Class
@@ -70,8 +75,8 @@ Below is an example of using the hook in a form with a **Start** and **Stop** bu
 Public Class Form1
     Dim KeyboardHook As InputHelper.Hooks.KeyboardHook
 
-    Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        KeyboardHook = New InputHelper.Hooks.KeyboardHook() 'Start the hook when the form opens.
+    Private Sub Form1_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+        If KeyboardHook IsNot Nothing Then KeyboardHook.Dispose() 'Dispose the hook if it is still active when the form has closed.
     End Sub
 
     Private Sub StartButton_Click(sender As System.Object, e As System.EventArgs) Handles StartButton.Click
