@@ -166,14 +166,16 @@ End Sub
 
 Available properties are:
 
-| Property  | Access      | Description |
-| --------- | ----------- | ----------- |
-| Block     | Read, Write | Whether the keystroke should be blocked from reaching any windows.<br/>**CAUTION:** Blocked keystrokes will not be handled by any application, nor Windows itself (apart from `CTRL + ALT + DEL`). Any problems caused by using this property is _**your own responsibility**_.
-| Extended  | Read        | Whether the keystroke message originated from one of the additional keys on the enhanced keyboard.<br/>\- **Read more**: [**Keystroke Message Flags - About Keyboard Input - MSDN**](https://msdn.microsoft.com/en-us/library/windows/desktop/ms646267(v=vs.85).aspx#_win32_Keystroke_Message_Flags)).
-| KeyCode   | Read        | The keyboard code of the key that generated the keystroke.
-| KeyState  | Read        | The current state of the key that generated the keystroke (down or up).
-| Modifiers | Read        | The modifier keys that was pressed in combination with the keystroke.<br/>\- **Valid modifiers:** `Control`, `Shift`, `Alt`, `Windows`
-| ScanCode  | Read        | The hardware scan code of the key that generated the keystroke.<br/>\- **Read more:** [**Scancode - Wikipedia**](https://en.wikipedia.org/wiki/Scancode).
+| Property          | Access      | Description |
+| ----------------- | ----------- | ----------- |
+| Block             | Read, Write | Whether the keystroke should be blocked from reaching any windows.<br/>**CAUTION:** Blocked keystrokes will not be handled by any application, nor Windows itself (apart from `CTRL + ALT + DEL`). Any problems caused by using this property is _**your own responsibility**_.
+| Extended          | Read        | Whether the keystroke message originated from one of the additional keys on the enhanced keyboard.<br/>\- **Read more**: [**Keystroke Message Flags - About Keyboard Input - MSDN**](https://msdn.microsoft.com/en-us/library/windows/desktop/ms646267(v=vs.85).aspx#_win32_Keystroke_Message_Flags)).
+| Injected          | Read        | Whether the keystroke was injected into the input stream by a process rather than an input device.
+| InjectedAtLowerIL | Read        | Whether the keystroke was injected into the input stream by another process running at lower integrity level.
+| KeyCode           | Read        | The keyboard code of the key that generated the keystroke.
+| KeyState          | Read        | The current state of the key that generated the keystroke (down or up).
+| Modifiers         | Read        | The modifier keys that was pressed in combination with the keystroke.<br/>\- **Valid modifiers:** `Control`, `Shift`, `Alt`, `Windows`
+| ScanCode          | Read        | The hardware scan code of the key that generated the keystroke.<br/>\- **Read more:** [**Scancode - Wikipedia**](https://en.wikipedia.org/wiki/Scancode).
 
 <br/>
 
