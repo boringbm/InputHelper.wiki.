@@ -189,12 +189,14 @@ End Sub
 
 Available properties are:
 
-| Property        | Access      | Description |
-| --------------- | ----------- | ----------- |
-| Block           | Read, Write | Whether the mouse input should be blocked from reaching any windows.<br/>**CAUTION:** Blocked mouse input will not be handled by any application, nor Windows itself! Any problems caused by using this property is _**your own responsibility!**_ _(Any event)_
-| Button          | Read        | The mouse button that was pressed or released _(MouseDown and MouseUp events only)_.
-| ButtonState     | Read        | The state of the button that generated the event (Down or Up) _(MouseDown and MouseUp events only)_.
-| Delta           | Read        | The amount that the mouse wheel has scrolled. This is positive if the mouse wheel is rotated upwards (away from the user) or negative if the mouse wheel is rotated in a downwards (toward the user) _(MouseWheel event only)_.
-| DoubleClick     | Read        | Whether the clicked button was caused by a double-click _(MouseDown event only)_.
-| Location        | Read        | The current location of the mouse (in screen coordinates) _(Any event)_.
-| ScrollDirection | Read        | In which direction the mouse wheel was scrolled (vertically or horizontally) _(MouseWheel event only)_.
+| Property          | Access      | Description |
+| ----------------- | ----------- | ----------- |
+| Block             | Read, Write | Whether the mouse input should be blocked from reaching any windows.<br/>**CAUTION:** Blocked mouse input will not be handled by any application, nor Windows itself! Any problems caused by using this property is _**your own responsibility!**_ _(Any event)_
+| Button            | Read        | The mouse button that was pressed or released _(MouseDown and MouseUp events only)_.
+| ButtonState       | Read        | The state of the button that generated the event (Down or Up) _(MouseDown and MouseUp events only)_.
+| Delta             | Read        | The amount that the mouse wheel has scrolled. This is positive if the mouse wheel is rotated upwards (away from the user) or negative if the mouse wheel is rotated in a downwards (toward the user) _(MouseWheel event only)_.
+| DoubleClick       | Read        | Whether the clicked button was caused by a double-click _(MouseDown event only)_.
+| Injected          | Read        | Whether the mouse event was injected into the input stream by a process rather than an input device.
+| InjectedAtLowerIL | Read        | Whether the mouse event was injected into the input stream by another process running at lower integrity level.
+| Location          | Read        | The current location of the mouse (in screen coordinates) _(Any event)_.
+| ScrollDirection   | Read        | In which direction the mouse wheel was scrolled (vertically or horizontally) _(MouseWheel event only)_.
